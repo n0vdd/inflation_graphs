@@ -1,87 +1,37 @@
 [project]
-name = "brazil-inflation-cli"
+name = "brazil-inflation-graphs"
 version = "1.0.0"
-description = "CLI tool for analyzing Brazil's inflation transformation from hyperinflation to modern stability"
+description = "Python project for visualizing Brazil's inflation data over 30-40 years"
 readme = "README.md"
 requires-python = ">=3.10"
-authors = [
-    {name = "Brazil Inflation Visualization", email = "noreply@example.com"}
-]
-keywords = ["brazil", "inflation", "visualization", "economics", "data-analysis"]
-classifiers = [
-    "Development Status :: 4 - Beta",
-    "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: MIT License",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
-    "Topic :: Scientific/Engineering :: Visualization",
-    "Topic :: Office/Business :: Financial",
-]
 dependencies = [
-    # Core data processing (Polars-first approach)
     "polars>=0.20.0",
-    # Async HTTP for data fetching
-    "httpx>=0.24.0",
-    # Date handling
-    "python-dateutil>=2.8.0",
-    # API clients (minimal external deps)
-    "fredapi>=0.5.0",
-    # Configuration and validation
+    "matplotlib>=3.5.0",
+    "plotly>=5.0.0",
+    "requests>=2.25.0",
+    "seaborn>=0.12.0",
+    "python-dateutil",
+    "scipy>=1.10.0",
+    "numpy>=1.24.0",
+    "pandas>=2.0.0",
     "pydantic>=2.0.0",
     "pydantic-settings>=2.0.0",
-    "python-dotenv>=1.0.0",
-    # CLI and output
+    "httpx>=0.24.0",
+    "fredapi>=0.5.0",
     "rich>=13.0.0",
-    "typer>=0.9.0",
-    "matplotlib>=3.10.6",
-    "plotly>=6.3.0",
-    "seaborn>=0.13.2",
-    "pyarrow>=21.0.0",
-    # Time series analysis and advanced analytics
-    "scipy>=1.10.0",
     "scikit-learn>=1.3.0",
     "statsmodels>=0.14.0",
-    "numpy>=1.24.0",
-    # Dashboard dependencies
     "dash>=2.14.0",
     "dash-bootstrap-components>=1.5.0",
-    "pandas-stubs==2.3.2.250827",
+    "pillow>=10.0.0",
 ]
 
 [project.optional-dependencies]
-# Development dependencies
 dev = [
     "pytest>=7.0.0",
-    "pytest-asyncio>=0.21.0",
-    "pytest-cov>=4.0.0",
-    "mypy>=1.5.0",
     "ruff>=0.0.280",
     "black>=23.0.0",
-    "pre-commit>=3.0.0",
 ]
-
-# Visualization dependencies (optional - already included in main deps)
-viz = [
-    # These are already in main dependencies for core functionality
-]
-
-# Additional data sources (optional)
-extra-sources = [
-    "sidrapy>=0.1.4",  # IBGE SIDRA API
-]
-
-# Full installation (all optional dependencies)
-full = [
-    "brazil-inflation-cli[extra-sources]",
-]
-
-[project.scripts]
-brazil-inflation = "main:main"
-
-[tool.hatch.build.targets.wheel]
-packages = ["src/brazil_inflation_graphs"]
 
 [build-system]
 requires = ["hatchling"]
@@ -90,17 +40,9 @@ build-backend = "hatchling.build"
 [tool.uv]
 dev-dependencies = [
     "pytest>=7.0.0",
-    "pytest-asyncio>=0.21.0",
-    "pytest-cov>=4.0.0",
-    "mypy>=1.5.0",
     "ruff>=0.0.280",
     "black>=23.0.0",
-    "pre-commit>=3.0.0",
-    "brazil-inflation-cli[full]",
 ]
-
-[tool.uv.sources]
-brazil-inflation-cli = { workspace = true }
 
 [tool.ruff]
 target-version = "py310"
