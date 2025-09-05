@@ -1,0 +1,82 @@
+{
+  "export_info": {
+    "export_type": "web",
+    "export_timestamp": "2025-09-05T02:24:59.515492",
+    "export_specifications": {
+      "dpi": 150,
+      "formats": [
+        "png",
+        "webp"
+      ],
+      "dimensions": [
+        [
+          12,
+          8
+        ],
+        [
+          16,
+          10
+        ]
+      ],
+      "color_space": "sRGB",
+      "font_size": 11,
+      "line_width_multiplier": 1.0
+    },
+    "color_palette": {
+      "primary": "#3498db",
+      "secondary": "#e74c3c",
+      "accent": "#2ecc71",
+      "neutral": "#95a5a6",
+      "background": "#ffffff",
+      "grid": "#ecf0f1"
+    }
+  },
+  "data_info": {
+    "source": "ibge_sidra",
+    "fetch_timestamp": "2025-09-05T02:23:06.415809",
+    "total_observations": 540,
+    "date_range": {
+      "start": "1980-01-01",
+      "end": "2024-12-01"
+    },
+    "metadata": {}
+  },
+  "visualization_info": {
+    "methodology": {
+      "dual_period_approach": "Logarithmic scale for hyperinflation (pre-1994), linear for modern era",
+      "seasonal_decomposition": "X-13ARIMA-SEATS methodology",
+      "structural_breaks": "Chow tests and CUSUM analysis",
+      "volatility_modeling": "ARCH/GARCH estimation"
+    },
+    "key_events": [
+      {
+        "date": "1994-07-01",
+        "name": "Plano Real",
+        "description": "Currency reform and stabilization"
+      },
+      {
+        "date": "1999-01-01",
+        "name": "Inflation Targeting",
+        "description": "Adoption of inflation targeting regime"
+      },
+      {
+        "date": "2008-09-15",
+        "name": "Global Crisis",
+        "description": "Lehman Brothers collapse"
+      },
+      {
+        "date": "2020-03-11",
+        "name": "COVID-19",
+        "description": "WHO declares pandemic"
+      }
+    ]
+  },
+  "citation": {
+    "suggested_citation": "Brazil Inflation Analytics Dashboard. Generated using World Bank, FRED, and IBGE data.",
+    "data_sources": [
+      "World Bank: https://data.worldbank.org",
+      "FRED: https://fred.stlouisfed.org",
+      "IBGE: https://sidra.ibge.gov.br"
+    ]
+  }
+}

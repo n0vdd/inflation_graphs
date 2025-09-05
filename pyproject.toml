@@ -1,0 +1,178 @@
+[project]
+name = "brazil-inflation-cli"
+version = "1.0.0"
+description = "CLI tool for analyzing Brazil's inflation transformation from hyperinflation to modern stability"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    {name = "Brazil Inflation Visualization", email = "noreply@example.com"}
+]
+keywords = ["brazil", "inflation", "visualization", "economics", "data-analysis"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Visualization",
+    "Topic :: Office/Business :: Financial",
+]
+dependencies = [
+    # Core data processing (Polars-first approach)
+    "polars>=0.20.0",
+    # Async HTTP for data fetching
+    "httpx>=0.24.0",
+    # Date handling
+    "python-dateutil>=2.8.0",
+    # API clients (minimal external deps)
+    "fredapi>=0.5.0",
+    # Configuration and validation
+    "pydantic>=2.0.0",
+    "pydantic-settings>=2.0.0",
+    "python-dotenv>=1.0.0",
+    # CLI and output
+    "rich>=13.0.0",
+    "typer>=0.9.0",
+    "matplotlib>=3.10.6",
+    "plotly>=6.3.0",
+    "seaborn>=0.13.2",
+    "pyarrow>=21.0.0",
+    # Time series analysis and advanced analytics
+    "scipy>=1.10.0",
+    "scikit-learn>=1.3.0",
+    "statsmodels>=0.14.0",
+    "numpy>=1.24.0",
+    # Dashboard dependencies
+    "dash>=2.14.0",
+    "dash-bootstrap-components>=1.5.0",
+    "pandas-stubs==2.3.2.250827",
+]
+
+[project.optional-dependencies]
+# Development dependencies
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0.0",
+    "mypy>=1.5.0",
+    "ruff>=0.0.280",
+    "black>=23.0.0",
+    "pre-commit>=3.0.0",
+]
+
+# Visualization dependencies (optional - already included in main deps)
+viz = [
+    # These are already in main dependencies for core functionality
+]
+
+# Additional data sources (optional)
+extra-sources = [
+    "sidrapy>=0.1.4",  # IBGE SIDRA API
+]
+
+# Full installation (all optional dependencies)
+full = [
+    "brazil-inflation-cli[extra-sources]",
+]
+
+[project.scripts]
+brazil-inflation = "main:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/brazil_inflation_graphs"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0.0",
+    "mypy>=1.5.0",
+    "ruff>=0.0.280",
+    "black>=23.0.0",
+    "pre-commit>=3.0.0",
+    "brazil-inflation-cli[full]",
+]
+
+[tool.uv.sources]
+brazil-inflation-cli = { workspace = true }
+
+[tool.ruff]
+target-version = "py310"
+line-length = 88
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "B",  # flake8-bugbear
+    "C4", # flake8-comprehensions
+    "UP", # pyupgrade
+]
+ignore = [
+    "E501",  # line too long, handled by black
+    "B008",  # do not perform function calls in argument defaults
+    "C901",  # too complex
+]
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]
+
+[tool.black]
+line-length = 88
+target-version = ['py310']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+addopts = "-v --cov=src --cov-report=term-missing --cov-report=html"
+asyncio_mode = "auto"
+
+[tool.coverage.run]
+source = ["src"]
+omit = ["tests/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]

@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(/C:\\Users\\user\\code\\brazil_inflation_graphs/**)",
+      "WebSearch",
+      "Read(/C:\\Users\\user\\code\\brazil_inflation_graphs\\src/**)",
+      "Read(/C:\\Users\\user\\code\\brazil_inflation_graphs\\src/**)",
+      "Bash(pip install:*)",
+      "Bash(python:*)",
+      "Bash(sed:*)",
+      "Bash(source:*)",
+      "Bash(uv run:*)",
+      "Bash(find:*)",
+      "Bash(uv add:*)",
+      "WebFetch(domain:sidra.ibge.gov.br)",
+      "WebFetch(domain:apisidra.ibge.gov.br)",
+      "Bash(cat:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
